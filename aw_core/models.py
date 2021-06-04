@@ -17,6 +17,8 @@ Duration = Union[timedelta, Number]
 Data = Dict[str, Any]
 
 
+
+
 def _timestamp_parse(ts_in: ConvertableTimestamp) -> datetime:
     """
     Takes something representing a timestamp and
@@ -33,6 +35,120 @@ def _timestamp_parse(ts_in: ConvertableTimestamp) -> datetime:
         logger.warning("timestamp without timezone found, using UTC: {}".format(ts))
         ts = ts.replace(tzinfo=timezone.utc)
     return ts
+
+class UserInfo(dict):
+    def __init__(
+        self,
+        id: Id = None,
+        name: str=None,
+        email: str=None,
+        age: int=0,
+        userfrom: str=None,
+        timeskills:str=None,
+        unproductive_websites:str=None,
+        productive_websites:str=None
+    ) -> None:
+        self.id = id
+        self.email = email
+        self.age=age  
+        self.userfrom=userfrom
+        self.timeskills=timeskills
+        self.unproductive_websites=unproductive_websites
+        self.productive_websites=productive_websites
+        self.name = name
+
+
+    def __eq__(self, other: object) -> bool:
+        if isinstance(other, UserInfo):
+            return (
+                self.email == other.email
+                and self.age == other.age
+                and self.name == other.name
+            )
+        else:
+            raise TypeError(
+                "operator not supported between instances of '{}' and '{}'".format(
+                    type(self), type(other)
+                )
+            )
+
+    def __lt__(self, other: object) -> bool:
+        if isinstance(other, UserInfo):
+            return self.email 
+        else:
+            raise TypeError(
+                "operator not supported between instances of '{}' and '{}'".format(
+                    type(self), type(other)
+                )
+            )
+
+    def to_json_dict(self) -> dict:
+        """Useful when sending data over the wire.
+        Any mongodb interop should not use do this as it accepts datetimes."""
+        json_data = self.copy()
+        return json_data
+
+    def to_json_str(self) -> str:
+        data = self.to_json_dict()
+        return json.dumps(data)
+
+    def _hasprop(self, propname: str) -> bool:
+        """Badly named, but basically checks if the underlying
+        dict has a prop, and if it is a non-empty list"""
+        return propname in self and self[propname] is not None
+
+    @property
+    def id(self) -> Id:
+        return self["id"] if self._hasprop("id") else None
+
+    @id.setter
+    def id(self, id: Id) -> None:
+        self["id"] = id
+
+    # @property
+    # def data(self) -> dict:
+    #     return self["data"] if self._hasprop("data") else {}
+
+    # @data.setter
+    # def data(self, data: dict) -> None:
+    #     self["data"] = data
+
+    # @property
+    # def timestamp(self) -> datetime:
+    #     return self["timestamp"]
+
+    # @timestamp.setter
+    # def timestamp(self, timestamp: ConvertableTimestamp) -> None:
+    #     self["timestamp"] = _timestamp_parse(timestamp).astimezone(timezone.utc)
+
+    # @property
+    # def duration(self) -> timedelta:
+    #     return self["duration"] if self._hasprop("duration") else timedelta(0)
+
+    # @duration.setter
+    # def duration(self, duration: Duration) -> None:
+    #     if isinstance(duration, timedelta):
+    #         self["duration"] = duration
+    #     elif isinstance(duration, numbers.Real):
+    #         self["duration"] = timedelta(seconds=duration)  # type: ignore
+    #     else:
+    #         raise TypeError(
+    #             "Couldn't parse duration of invalid type {}".format(type(duration))
+    #         )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 class Event(dict):
