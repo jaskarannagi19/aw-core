@@ -144,7 +144,7 @@ class PeeweeStorage(AbstractStorage):
         self.db.connect()
 
         self.bucket_keys: Dict[str, int] = {}
-        UserModel.create_table(safe=False)
+        UserModel.create_table(safe=True)
         logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx--------------------------------------------------")
         BucketModel.create_table(safe=True)
         EventModel.create_table(safe=True)
