@@ -139,7 +139,7 @@ class PeeweeStorage(AbstractStorage):
         self.db = _db
         self.db.init(filepath)
         #logger.info("Using database file: {}".format(filepath))
-        #logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx--------------------------------------------------")
+        #####logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx--------------------------------------------------")
 
         self.db.connect()
 
