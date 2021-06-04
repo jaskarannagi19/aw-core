@@ -73,7 +73,7 @@ class SqliteStorage(AbstractStorage):
         new_db_file = not os.path.exists(filepath)
         self.conn = sqlite3.connect(filepath)
         logger.info("Using database file: {}".format(filepath))
-
+        print("--------------------------------------XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX--------------------------------->>")
         # Create tables
         self.conn.execute(CREATE_BUCKETS_TABLE)
         self.conn.execute(CREATE_EVENTS_TABLE)
