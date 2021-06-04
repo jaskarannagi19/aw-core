@@ -71,6 +71,31 @@ class BucketModel(BaseModel):
         }
 
 
+class UserModel(BaseModel):        
+    id = AutoField(primary_key=True)
+    name = CharField()
+    email = CharField()
+    age = CharField()
+    userfrom = CharField()
+    timeskills = CharField()
+    unproductive_websites=CharField()
+    productive_websites   =  CharField()
+
+    def json(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "email": self.email,
+            "age": self.age,
+            "userfrom":self.userfrom,
+            "timeskills":self.timeskills,
+            "unproductive_websites":self.unproductive_websites,
+            "productive_websites":self.productive_websites
+        }
+
+
+
+
 class EventModel(BaseModel):
     id = AutoField()
     bucket = ForeignKeyField(BucketModel, backref="events", index=True)
@@ -113,13 +138,18 @@ class PeeweeStorage(AbstractStorage):
             filepath = os.path.join(data_dir, filename)
         self.db = _db
         self.db.init(filepath)
-        logger.info("Using database file: {}".format(filepath))
+        #logger.info("Using database file: {}".format(filepath))
+        logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx--------------------------------------------------")
 
         self.db.connect()
 
         self.bucket_keys: Dict[str, int] = {}
+        UserModel.create_table(safe=False)
+        logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx--------------------------------------------------")
         BucketModel.create_table(safe=True)
         EventModel.create_table(safe=True)
+        
+        
         self.update_bucket_keys()
 
     def update_bucket_keys(self) -> None:
