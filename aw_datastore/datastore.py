@@ -65,7 +65,6 @@ class Datastore:
         return self.storage_strategy.buckets()
 
 
-    
     def create_userinfo(
         self,
         name: str,
@@ -93,20 +92,13 @@ class User:
         return self.ds.storage_strategy.get_metadata(self.email)
 
     def insert(self, user: Union[UserInfo, List[UserInfo]]) -> Optional[UserInfo]:
-        
-
-        
         inserted: Optional[UserInfo] = None
-
         # Call insert
         if isinstance(user, UserInfo):
-            
             inserted = self.ds.storage_strategy.save_user(user)
             # assert inserted
-
         else:
             raise TypeError
-
         return inserted
 
 

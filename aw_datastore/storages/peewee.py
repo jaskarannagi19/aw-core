@@ -198,8 +198,18 @@ class PeeweeStorage(AbstractStorage):
             raise Exception("Bucket did not exist, could not get metadata")
     
 
-    def save_user(self, user:UserInfo)->UserInfo:
-        raise NotImplementedError
+    def save_user_database(self, user:UserInfo)->UserInfo:
+        UserModel.create(
+            name=user['name'],
+            age=user['age'],
+            email=user['email'],
+            productive_websites=user['productive_websites'],
+            unproductive_websites=user['unproductive_websites'],
+            timeskills=user['timeskills'],
+        )
+        
+        
+        #raise NotImplementedError
 
 
     def insert_one(self, bucket_id: str, event: Event) -> Event:
