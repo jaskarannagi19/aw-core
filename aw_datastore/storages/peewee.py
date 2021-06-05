@@ -205,6 +205,7 @@ class PeeweeStorage(AbstractStorage):
 
         u = UserModel.create(
             name=userdetail['name'],
+            userfrom=userdetail['userfrom'],
             age=userdetail['age'],
             email=userdetail['email'],            
             productive_websites=userdetail['productive_websites'],
