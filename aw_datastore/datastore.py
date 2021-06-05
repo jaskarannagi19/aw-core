@@ -79,11 +79,9 @@ class Datastore:
 
         u = UserInfo(name=name, age=age, email=email, userfrom=userfrom, timeskills=timeskills, unproductive_websites=unproductive_websites, productive_websites=productive_websites)
 
-        
-
         self.storage_strategy.save_user_database(u)
         
-        return self[email]
+        return email
 
 
 class User:
