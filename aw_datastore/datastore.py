@@ -72,13 +72,13 @@ class Datastore:
         email: str,
         userfrom: str,
         timeskills:str,
-        unproductive_sites: str,
-        productive_sites: str,
+        unproductive_websites: str,
+        productive_websites: str,
     ) -> "User":
         self.logger.info("Creating user '{}'".format(email))
         self.storage_strategy.create_userinfo(
-            name=name,age=age,email=email,timeskills=timeskills,userfrom=userfrom,unproductive_sites=unproductive_sites,
-            productive_sites=productive_sites
+            name=name,age=age,email=email,timeskills=timeskills,userfrom=userfrom,unproductive_sites=unproductive_websites,
+            productive_sites=productive_websites
         )
         return self[email]
 
