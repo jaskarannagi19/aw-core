@@ -61,10 +61,6 @@ class AbstractStorage(metaclass=ABCMeta):
         raise NotImplementedError
 
     @abstractmethod
-    def save_user(self, user:UserInfo)->UserInfo:
-        raise NotImplementedError
-
-    @abstractmethod
     def insert_one(self, bucket_id: str, event: Event) -> Event:
         raise NotImplementedError
 
