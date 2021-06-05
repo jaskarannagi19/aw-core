@@ -3,7 +3,7 @@ from typing import List, Dict, Optional
 from datetime import datetime
 from abc import ABCMeta, abstractmethod, abstractproperty
 
-from aw_core.models import Event
+from aw_core.models import Event, UserInfo
 
 
 class AbstractStorage(metaclass=ABCMeta):
@@ -58,6 +58,10 @@ class AbstractStorage(metaclass=ABCMeta):
         starttime: Optional[datetime] = None,
         endtime: Optional[datetime] = None,
     ) -> int:
+        raise NotImplementedError
+
+    @abstractmethod
+    def save_user(self, user:UserInfo)->UserInfo:
         raise NotImplementedError
 
     @abstractmethod

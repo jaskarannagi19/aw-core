@@ -2,7 +2,7 @@ import logging
 from datetime import datetime, timezone, timedelta
 from typing import Dict, List, Union, Callable, Optional
 
-from aw_core.models import Event
+from aw_core.models import Event, UserInfo
 
 from .storages import AbstractStorage
 
@@ -63,6 +63,55 @@ class Datastore:
 
     def buckets(self):
         return self.storage_strategy.buckets()
+
+
+    
+    def create_userinfo(
+        self,
+        name: str,
+        age: int,
+        email: str,
+        userfrom: str,
+        unproductive_sites: str,
+        productive_sites: str,
+    ) -> "User":
+        self.logger.info("Creating user '{}'".format(email))
+        self.storage_strategy.create_userinfo(
+            name=name,age=age,email=email,userfrom=userfrom,unproductive_sites=unproductive_sites,
+            productive_sites=productive_sites
+        )
+        return self[email]
+
+
+class User:
+    def __init__(self, datastore: Datastore, email: str) -> None:
+        self.logger = logger.getChild("Name")
+        self.ds = datastore
+        self.email = email
+    
+    def metadata(self) -> dict:
+        return self.ds.storage_strategy.get_metadata(self.email)
+
+    def insert(self, user: Union[UserInfo, List[UserInfo]]) -> Optional[UserInfo]:
+        
+
+        
+        inserted: Optional[UserInfo] = None
+
+        # Call insert
+        if isinstance(user, UserInfo):
+            
+            inserted = self.ds.storage_strategy.save_user(user)
+            # assert inserted
+
+        else:
+            raise TypeError
+
+        return inserted
+
+
+
+
 
 
 class Bucket:
