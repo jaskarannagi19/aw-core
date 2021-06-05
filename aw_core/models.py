@@ -1,6 +1,7 @@
 import json
 import logging
 import numbers
+from os import name
 import typing
 from datetime import datetime, timedelta, timezone
 from typing import Any, List, Dict, Union, Optional
@@ -16,8 +17,13 @@ ConvertableTimestamp = Union[datetime, str]
 Duration = Union[timedelta, Number]
 Data = Dict[str, Any]
 
-
-
+name=Union[str, str]
+email=Union[str, str]
+age=Union[int, int]
+userfrom=Union[str, str]
+timeskills=Union[str, str]
+unproductive_websites=Union[str, str]
+productive_websites=Union[str, str]
 
 def _timestamp_parse(ts_in: ConvertableTimestamp) -> datetime:
     """
@@ -40,15 +46,15 @@ class UserInfo(dict):
     def __init__(
         self,
         id: Id = None,
-        name: str=None,
-        email: str=None,
-        age: int=0,
-        userfrom: str=None,
-        timeskills:str=None,
-        unproductive_websites:str=None,
-        productive_websites:str=None
+        name: name=None,
+        email: email=None,
+        age: age=0,
+        userfrom: userfrom=None,
+        timeskills:timeskills=None,
+        unproductive_websites:unproductive_websites=None,
+        productive_websites:productive_websites=None
     ) -> None:
-        self.id = id
+        self.id 
         self.email = email
         self.age=age  
         self.userfrom=userfrom
