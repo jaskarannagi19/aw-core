@@ -199,9 +199,6 @@ class PeeweeStorage(AbstractStorage):
     
 
     def save_user_database(self, userdetail:UserInfo)->UserInfo:
-        #print(user)
-        #x = UserModel.create(user)
-        #x.save()
 
         u = UserModel.create(
             name=userdetail['name'],
@@ -213,10 +210,7 @@ class PeeweeStorage(AbstractStorage):
             timeskills=userdetail['timeskills'],
         )
         u.save()
-        
-        
-        #raise NotImplementedError
-
+        return userdetail['email']
 
     def insert_one(self, bucket_id: str, event: Event) -> Event:
         e = EventModel.from_event(self.bucket_keys[bucket_id], event)
