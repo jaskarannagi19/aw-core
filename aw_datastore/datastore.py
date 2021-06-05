@@ -1,5 +1,5 @@
 import logging
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, time, timezone, timedelta
 from typing import Dict, List, Union, Callable, Optional
 
 from aw_core.models import Event, UserInfo
@@ -76,10 +76,10 @@ class Datastore:
         productive_websites: str,
     ) -> "User":
         self.logger.info("Creating user '{}'".format(email))
-        self.storage_strategy.create_userinfo(
-            name=name,age=age,email=email,timeskills=timeskills,userfrom=userfrom,unproductive_sites=unproductive_websites,
-            productive_sites=productive_websites
-        )
+
+        u = UserInfo(name=name,age=age,email=email,userfrom=userfrom,timeskills=timeskills,unproductive_websites=unproductive_websites, productive_websites=productive_websites)
+
+        self.storage_strategy.save_user_database(u)
         return self[email]
 
 
