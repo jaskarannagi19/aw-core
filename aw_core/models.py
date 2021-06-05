@@ -105,6 +105,66 @@ class UserInfo(dict):
     def id(self, id: Id) -> None:
         self["id"] = id
 
+
+    @property
+    def name(self) -> name:
+        return self["name"] if self._hasprop("name") else None
+
+    @name.setter
+    def name(self, name: name) -> None:
+        self["name"] = name
+
+    @property
+    def email(self) -> email:
+        return self["email"] if self._hasprop("email") else None
+
+    @email.setter
+    def email(self, email: email) -> None:
+        self["email"] = email
+
+    @property
+    def age(self) -> age:
+        return self["age"] if self._hasprop("age") else None
+
+    @age.setter
+    def age(self, age: age) -> None:
+        self["email"] = age
+
+    @property
+    def userfrom(self) -> userfrom:
+        return self["userfrom"] if self._hasprop("userfrom") else None
+
+    @age.setter
+    def userfrom(self, userfrom: userfrom) -> None:
+        self["userfrom"] = userfrom
+
+    @property
+    def timeskills(self) -> timeskills:
+        return self["timeskills"] if self._hasprop("timeskills") else None
+
+    @age.setter
+    def timeskills(self, timeskills: timeskills) -> None:
+        self["timeskills"] = timeskills
+
+    @property
+    def unproductive_websites(self) -> unproductive_websites:
+        return self["unproductive_websites"] if self._hasprop("unproductive_websites") else None
+
+    @age.setter
+    def unproductive_websites(self, unproductive_websites: unproductive_websites) -> None:
+        self["unproductive_websites"] = unproductive_websites
+
+
+    @property
+    def productive_websites(self) -> productive_websites:
+        return self["productive_websites"] if self._hasprop("productive_websites") else None
+
+    @age.setter
+    def productive_websites(self, productive_websites: productive_websites) -> None:
+        self["productive_websites"] = productive_websites
+
+  
+
     # @property
     # def data(self) -> dict:
     #     return self["data"] if self._hasprop("data") else {}

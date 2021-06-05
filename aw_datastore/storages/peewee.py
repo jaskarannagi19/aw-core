@@ -138,14 +138,14 @@ class PeeweeStorage(AbstractStorage):
             filepath = os.path.join(data_dir, filename)
         self.db = _db
         self.db.init(filepath)
-        #logger.info("Using database file: {}".format(filepath))
+        logger.info("Using database file: {}".format(filepath))
         #####logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx--------------------------------------------------")
 
         self.db.connect()
 
         self.bucket_keys: Dict[str, int] = {}
         UserModel.create_table(safe=True)
-        logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx--------------------------------------------------")
+        #logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx--------------------------------------------------")
         BucketModel.create_table(safe=True)
         EventModel.create_table(safe=True)
         
