@@ -134,7 +134,7 @@ class UserInfo(dict):
 
     @age.setter
     def age(self, age: age) -> None:
-        self["email"] = age
+        self["age"] = age
 
     @property
     def userfrom(self) -> userfrom:

@@ -77,9 +77,13 @@ class Datastore:
     ) -> "User":
         self.logger.info("Creating user '{}'".format(email))
 
-        u = UserInfo(name=name,age=age,email=email,userfrom=userfrom,timeskills=timeskills,unproductive_websites=unproductive_websites, productive_websites=productive_websites)
+        u = UserInfo(name=name, age=age, email=email, userfrom=userfrom, timeskills=timeskills, unproductive_websites=unproductive_websites, productive_websites=productive_websites)
+
+        print('xxxxxxxxxxxxxxxxxxxxxxxxxxx',u)
+
 
         self.storage_strategy.save_user_database(u)
+        
         return self[email]
 
 
