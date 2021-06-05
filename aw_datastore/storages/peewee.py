@@ -198,18 +198,18 @@ class PeeweeStorage(AbstractStorage):
             raise Exception("Bucket did not exist, could not get metadata")
     
 
-    def save_user_database(self, user:UserInfo)->UserInfo:
-        print(user)
-        x = UserModel.create(user)
-        x.save()
+    def save_user_database(self, userdetail:UserInfo)->UserInfo:
+        #print(user)
+        #x = UserModel.create(user)
+        #x.save()
 
         u = UserModel.create(
-            name=user['name'],
-            age=user['age'],
-            email=user['email'],            
-            productive_websites=user['productive_websites'],
-            unproductive_websites=user['unproductive_websites'],
-            timeskills=user['timeskills'],
+            name=userdetail['name'],
+            age=userdetail['age'],
+            email=userdetail['email'],            
+            productive_websites=userdetail['productive_websites'],
+            unproductive_websites=userdetail['unproductive_websites'],
+            timeskills=userdetail['timeskills'],
         )
         u.save()
         
