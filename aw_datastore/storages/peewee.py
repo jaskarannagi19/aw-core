@@ -210,7 +210,7 @@ class PeeweeStorage(AbstractStorage):
             timeskills=userdetail['timeskills'],
         )
         u.save()
-        return userdetail['email']
+        return userdetail['email']  
 
     def insert_one(self, bucket_id: str, event: Event) -> Event:
         e = EventModel.from_event(self.bucket_keys[bucket_id], event)
