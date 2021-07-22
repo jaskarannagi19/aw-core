@@ -42,7 +42,7 @@ def _timestamp_parse(ts_in: ConvertableTimestamp) -> datetime:
         ts = ts.replace(tzinfo=timezone.utc)
     return ts
 
-class UserInfo(dict):
+class UserInformation(dict):
     def __init__(
         self,
         id: Id = None,

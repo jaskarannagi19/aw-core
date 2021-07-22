@@ -12,6 +12,6 @@ from . import config
 from . import log
 
 from . import models
-from .models import Event, UserInfo
+from .models import UserInformation, Event
 
 from . import schema
