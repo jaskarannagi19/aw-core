@@ -16,7 +16,7 @@ from peewee import (
 )
 from playhouse.sqlite_ext import SqliteExtDatabase
 
-from aw_core.models import Event, UserInfo
+from aw_core.models import Event, UserInformation
 from aw_core.dirs import get_data_dir
 
 from .abstract import AbstractStorage
@@ -198,7 +198,7 @@ class PeeweeStorage(AbstractStorage):
             raise Exception("Bucket did not exist, could not get metadata")
     
 
-    def save_user_database(self, userdetail:UserInfo)->UserInfo:
+    def save_user_database(self, userdetail:UserInformation)->UserInformation:
 
         u = UserModel.create(
             name=userdetail['name'],

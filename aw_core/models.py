@@ -65,7 +65,7 @@ class UserInformation(dict):
 
 
     def __eq__(self, other: object) -> bool:
-        if isinstance(other, UserInfo):
+        if isinstance(other, UserInformation):
             return (
                 self.email == other.email
                 and self.age == other.age
@@ -79,7 +79,7 @@ class UserInformation(dict):
             )
 
     def __lt__(self, other: object) -> bool:
-        if isinstance(other, UserInfo):
+        if isinstance(other, UserInformation):
             return self.email 
         else:
             raise TypeError(

@@ -2,7 +2,7 @@ import logging
 from datetime import datetime, time, timezone, timedelta
 from typing import Dict, List, Union, Callable, Optional
 
-from aw_core.models import Event, UserInfo
+from aw_core.models import Event, UserInformation
 
 from .storages import AbstractStorage
 
@@ -77,7 +77,7 @@ class Datastore:
     ) -> "User":
         self.logger.info("Creating user '{}'".format(email))
 
-        u = UserInfo(name=name, age=age, email=email, userfrom=userfrom, timeskills=timeskills, unproductive_websites=unproductive_websites, productive_websites=productive_websites)
+        u = UserInformation(name=name, age=age, email=email, userfrom=userfrom, timeskills=timeskills, unproductive_websites=unproductive_websites, productive_websites=productive_websites)
 
         self.storage_strategy.save_user_database(u)
         
@@ -93,10 +93,10 @@ class User:
     def metadata(self) -> dict:
         return self.ds.storage_strategy.get_metadata(self.email)
 
-    def insert(self, user: Union[UserInfo, List[UserInfo]]) -> Optional[UserInfo]:
-        inserted: Optional[UserInfo] = None
+    def insert(self, user: Union[UserInformation, List[UserInformation]]) -> Optional[UserInformation]:
+        inserted: Optional[UserInformation] = None
         # Call insert
-        if isinstance(user, UserInfo):
+        if isinstance(user, UserInformation):
             inserted = self.ds.storage_strategy.save_user(user)
             # assert inserted
         else:

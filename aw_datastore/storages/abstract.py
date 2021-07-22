@@ -3,7 +3,7 @@ from typing import List, Dict, Optional
 from datetime import datetime
 from abc import ABCMeta, abstractmethod, abstractproperty
 
-from aw_core.models import Event, UserInfo
+from aw_core.models import Event, UserInformation
 
 
 class AbstractStorage(metaclass=ABCMeta):
