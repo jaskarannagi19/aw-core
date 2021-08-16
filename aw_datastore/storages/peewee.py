@@ -3,6 +3,7 @@ from datetime import datetime, timezone
 import json
 import os
 import logging
+from aw_datastore.datastore import User
 import iso8601
 
 from peewee import (
@@ -197,6 +198,14 @@ class PeeweeStorage(AbstractStorage):
         else:
             raise Exception("Bucket did not exist, could not get metadata")
     
+
+    def _get_last_user(self) -> UserInformation:
+        return (
+            UserModel.select().order_by(UserModel.id.desc())
+            .get()
+        )
+
+
 
     def save_user_database(self, userdetail:UserInformation)->UserInformation:
 
